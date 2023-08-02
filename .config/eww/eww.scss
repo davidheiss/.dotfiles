@@ -1,0 +1,20 @@
+* {
+    all: unset;
+    font-family: "Monoid Nerd Font"
+}
+
+//  _____ _                         
+// |_   _| |__   ___ _ __ ___   ___ 
+//   | | | '_ \ / _ \ '_ ` _ \ / _ \
+//   | | | | | |  __/ | | | | |  __/
+//   |_| |_| |_|\___|_| |_| |_|\___|
+
+$background-color: #1c1c1c;
+$color: #d4d4d4;
+$animation-time: 144ms;
+$hover: #303030;
+$active: #404040;
+
+                                 
+@import "windows/bar.scss";
+@import "windows/power_menu.scss";

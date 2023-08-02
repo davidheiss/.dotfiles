@@ -1,0 +1,21 @@
+(
+  defwidget icon_text [icon text ?tooltip ?class ?spacing]
+  (
+    box
+    :class class
+    :space-evenly false
+    :spacing {spacing ?: 8}
+    :tooltip tooltip
+    (
+      box
+      :class "icon"
+      icon
+    )
+    (
+      box
+      :class "text"
+      text
+    )
+  )
+)
+

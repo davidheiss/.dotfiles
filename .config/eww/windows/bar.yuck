@@ -1,0 +1,244 @@
+(
+  defwindow bar
+  :monitor 0
+  :geometry (
+    geometry
+    :x "0"
+    :y "0"
+    :width "100%"
+    :height "40px"
+    :anchor "top center"
+  )
+  :reserve (struts :distance "40px" :side "top" )
+  :stacking "bg"
+  :windowtype "dock"
+  :wm-ignore false
+  (
+    centerbox
+    :orientation "h"
+    (bar_left)
+    (bar_middle)
+    (bar_right)
+  )
+)
+
+(
+  defwidget bar_left []
+  (
+    box
+    :class "container"
+    :halign "start"
+    :valign "center"
+    :space-evenly false
+    :spacing 8
+    (bar_app_launcher)
+    (bar_cpu)
+    (bar_ram)
+    (bar_disk)
+    ; (bar_upload)
+    ; (bar_download)
+    (bar_window_title)
+  )
+)
+
+(
+  defwidget bar_middle []
+  (
+    box
+    :class "container"
+    :halign "center"
+    :valign "center"
+    (bar_workspace)
+  )
+)
+
+(
+  defwidget bar_right []
+  (
+    box
+    :class "container"
+    :halign "end"
+    :valign "center"
+    :spacing 8
+    :space-evenly false
+    (bar_volume)
+    (bar_microphone)
+    (bar_time)
+    (bar_date)
+    (bar_powermenu)
+  )
+)
+
+(
+  defwidget bar_app_launcher []
+  (eventbox
+    :onclick "rofi -theme '~/.config/rofi/theme.rasi' -show drun -show-icons -display-drun 'Apps' -monitor 2&"
+    :cursor "pointer"
+    (
+      box
+      :class "app_launcher"
+      :tooltip "APPLICATION LAUNCHER"
+      "󰣇"
+    )
+  )
+)
+
+(
+  defwidget bar_cpu []
+  (
+    icon_text
+    :class "cpu"
+    :spacing 10
+    :icon ""
+    :text "${round(EWW_CPU.avg,0)}%"
+    :tooltip "CPU:${round(EWW_CPU.avg,2)}%"
+  )
+)
+
+(
+  defwidget bar_ram []
+  (
+    icon_text
+    :class "ram"
+    :spacing 10
+    :icon ""
+    :text "${round(EWW_RAM.used_mem_perc,0)}%"
+    :tooltip "RAM:${round(EWW_RAM.used_mem_perc,2)}%"
+  )
+)
+
+(
+  defwidget bar_disk []
+  (
+    icon_text
+    :class "disk"
+    :spacing 6
+    :icon "󰋊"
+    :text "${round(EWW_DISK['/'].used_perc,0)}%"
+    :tooltip "DISK:${round(EWW_DISK['/'].used_perc,2)}%"
+  )
+)
+
+(
+  defwidget bar_upload []
+  (
+    icon_text
+    :class "upload"
+    :icon "u"
+    :text { EWW_NET['enp0s31f6'].NET_UP > 1000 ?  "${round(EWW_NET['enp0s31f6'].NET_UP/1000,0)} MB" : "${EWW_NET['enp0s31f6'].NET_UP} kB" }
+    :tooltip EWW_NET
+  )
+)
+
+(
+  defwidget bar_download []
+  (
+    icon_text
+    :class "download"
+    :icon "d"
+    :text { EWW_NET['enp0s31f6'].NET_DOWN > 1000 ?  "${round(EWW_NET['enp0s31f6'].NET_DOWN/1000,0)} MB" : "${EWW_NET['enp0s31f6'].NET_DOWN} kB" }
+    :tooltip EWW_NET
+  )
+)
+
+(
+  defwidget bar_window_title []
+  (
+    label
+    :class "window_title"
+    :limit-width 64
+    ; :tooltip VAR_WINDOW_TITLE
+    :tooltip "WINDOW TITLE"
+    :text VAR_WINDOW_TITLE
+  )
+)
+
+(
+  defwidget bar_workspace []
+  (
+    box
+    :class "workspace"
+    :space-evenly false
+    (
+      for workspace in {VAR_WORKSPACE.workspaces}
+      (
+        button
+        :height 24
+        :width 24
+        :class {workspace.focused ? "focused" : workspace.state}
+        :tooltip "Workspace: ${workspace.name}"
+        :onclick "scripts/bash/change_workspace.sh ${workspace.name}"
+      )
+    )
+  )
+)
+
+(
+  defwidget bar_volume []
+  (
+    eventbox
+    :cursor "pointer"
+    :onclick "scripts/bash/mute_volume.sh"
+    (
+      icon_text
+      :class "volume hover"
+      :spacing 6
+      :icon {VAR_VOLUME.icon}
+      :text "${VAR_VOLUME.volume}%"
+      :tooltip "VOLUME:${VAR_VOLUME.volume}%"
+    )
+  )
+)
+
+(
+  defwidget bar_microphone []
+  (eventbox
+    :cursor "pointer"
+    :onclick "scripts/bash/mute_microphone.sh"
+    (
+      icon_text
+      :class "microphone hover"
+      :spacing 6
+      :icon {VAR_MICROPHONE.icon}
+      :text "${VAR_MICROPHONE.volume}%"
+      :tooltip "MICROPHONE:${VAR_MICROPHONE.volume}%"
+    )
+  )
+)
+
+(
+  defwidget bar_time []
+  (
+    icon_text
+    :class "time"
+    :spacing 9
+    :icon {VAR_DATE.icon}
+    :text "${VAR_DATE.time.short}"
+    :tooltip "TIME: ${VAR_DATE.time.half} UTC${VAR_DATE.time_zone.numeric[3]} (${VAR_DATE.time_zone.alphabetic})"
+  )
+)
+
+(
+  defwidget bar_date []
+  (
+    icon_text
+    :class "date"
+    :icon "󰃭"
+    :text "${VAR_DATE.date.short}"
+    :tooltip "DATE: ${VAR_DATE.weekday.abbreviated} ${VAR_DATE.day_of_month} ${VAR_DATE.month_text.abbreviated} ${VAR_DATE.year.full}"
+  )
+)
+
+(
+  defwidget bar_powermenu []
+  (eventbox
+    :onclick "scripts/bash/power_menu.sh"
+    :cursor "pointer"
+    (
+      box
+      :class "powermenu hover"
+      :tooltip "SYSTEM MENU"
+      "⏻"
+    )
+  )
+)

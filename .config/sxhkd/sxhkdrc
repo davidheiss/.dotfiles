@@ -1,0 +1,108 @@
+#!/bin/bash
+
+XF86AudioRaiseVolume
+    pamixer -i 2
+
+XF86AudioLowerVolume
+    pamixer -d 2
+
+XF86AudioMute
+    pamixer -t
+
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+super + shift + s
+    flameshot gui
+
+super + Return
+    kitty
+
+super + space
+    rofi -theme "~/.config/rofi/theme.rasi" -show drun -show-icons -display-drun "Apps" -monitor 2
+
+
+super + shift + q
+    bspc node -c
+
+super + f
+    bspc node --state floating || \
+    bspc node --state tiled
+
+super + shift + f
+    bspc node --state fullscreen || \
+    bspc node --state tiled
+
+super + h
+    bspc node focused.leaf -f west || \
+    bspc node focused.horizontal -f west || \
+    bspc node focused.vertical -f @first || \
+    bspc node -f west
+
+super + j
+    bspc node focused.leaf -f south || \
+    bspc node focused.horizontal -f @second || \
+    bspc node focused.vertical -f south || \
+    bspc node -f south 
+
+super + k
+    bspc node focused.leaf -f north || \
+    bspc node focused.horizontal -f @first || \
+    bspc node focused.vertical -f north || \
+    bspc node -f north 
+
+super + l
+    bspc node focused.leaf -f east || \
+    bspc node focused.horizontal -f east || \
+    bspc node focused.vertical -f @second || \
+    bspc node -f east 
+
+super + shift + {h,j,k,l}
+    dir={west,south,north,east}; \
+    bspc node focused -n $dir.!automatic || \
+    bspc node focused -s $dir --follow
+
+super + m
+    bspc node focused -n last.!automatic 
+
+super + ctrl + {h,j,k,l}
+    bspc node -m {west,south,north,east} --follow
+
+super + {b,e}
+    bspc node --{balance,equalize};
+
+super + {_,shift} + w
+    bspc node -R {90,270}
+
+super + i
+    bspc node -i
+
+super + shift + i
+    for win in `bspc query -N -n .leaf.!window`; do bspc node $win -k ; done;
+
+super + o
+    bspc node -f @parent
+
+super + p; {_,super +} {h,j,k,l,c,p}
+    bspc node focused -p {_,_} {west,south,north,east,cancel,cancel}
+
+super + {1,2,3,4,5,6,7,8,9,0}
+    bspc desktop -f DP-2:^{1,2,3,4,5,6,7,8,9,10}
+
+super + shift + {1,2,3,4,5,6,7,8,9,0}
+    bspc node -d DP-2:^{1,2,3,4,5,6,7,8,9,10} --follow
+
+super + ctrl + alt + {h,j,k,l}
+  n=50; \
+  { d1=left;   d2=right;  dx=-$n; dy=0;   \
+  , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+  , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+  , d1=right;  d2=left;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy

@@ -1,0 +1,55 @@
+(
+  defwindow power_menu
+  :monitor 0
+  :geometry (
+    geometry
+    :x "-8px"
+    :y "48px"
+    :width "260px"
+    :height "0px"
+    :anchor "top right"
+  )
+  :stacking "fg"
+  (
+    box
+    :class "container"
+    :orientation "v"
+    :spacing 4
+    (eventbox
+      :onclick "systemctl poweroff"
+      (
+        icon_text
+        :class "shutdown menu"
+        :icon "⏻"
+        :text "Shutdown"
+      )
+    )
+    (eventbox
+      :onclick "systemctl reboot"
+      (
+        icon_text
+        :class "reboot menu"
+        :icon ""
+        :text "Reboot"
+      )
+    )
+    (eventbox
+      :onclick "systemctl suspend"
+      (
+        icon_text
+        :class "suspend menu"
+        :icon "󰤄"
+        :text "Shuspend"
+      )
+    )
+    (eventbox
+      :onclick "scripts/bash/logout.sh"
+      (
+        icon_text
+        :class "logout menu"
+        :icon "󰌾"
+        :text "Log Out"
+      )
+    )
+  )
+)

@@ -1,0 +1,23 @@
+.power_menu {
+    background-color: #1c1c1c;
+    border-radius: 16px;
+}
+
+.power_menu>.container {
+    padding: 8px;
+}
+
+.menu {
+    padding: 4px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: $animation_time ease background-color;
+}
+
+*:hover>.menu{
+    background-color: $hover;
+}
+
+*:active>.menu{
+    background-color: $active;
+}

@@ -1,0 +1,29 @@
+(
+    deflisten VAR_WORKSPACE 
+    :initial "{\"workspaces\": []}"
+    "scripts/python/workspace.py --primary"
+)
+
+(
+    defpoll VAR_WINDOW_TITLE
+    :interval "200ms"
+    "scripts/bash/get_window_title.sh"
+)
+
+(
+    defpoll VAR_DATE
+    :interval "1s"
+    "scripts/bash/get_date.sh"
+)
+
+(
+    defpoll VAR_VOLUME
+    :interval "1s"
+    "scripts/bash/get_volume.sh"
+)
+
+(
+    defpoll VAR_MICROPHONE
+    :interval "1s"
+    "scripts/bash/get_microphone.sh"
+)

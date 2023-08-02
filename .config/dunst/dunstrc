@@ -1,0 +1,40 @@
+[global]
+  monitor = 0
+  follow = none
+  width = 300
+  origin = top-right
+  offset = 32x72 
+  scale = 0
+  notification_limit = 8
+  progress_bar = true
+  progress_bar_height = 10
+  progress_bar_frame_width = 1
+  transparency = 0 
+  separator_height = 2
+  padding = 12
+  text_icon_padding = 16
+  frame_width = 2
+  frame_color = "#606060"
+  gap_size = 0
+  separator_color = frame
+  font = Monoid Nerd Font 10
+  enable_recursive_icon_lookup = true
+  icon_position = left
+  corner_radius = 13
+  background = "#1c1c1c"
+  foreground = "#d4d4d4"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
