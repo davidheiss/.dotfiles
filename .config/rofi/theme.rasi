@@ -1,0 +1,77 @@
+* {
+  text-color: #d4d4d4;
+  background-color: #00000000;
+  width: inherit;
+  height: inherit;
+  cursor: inherit;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 600px;
+  height: 400px;
+  background-color: #1c1c1c;
+  border-radius: 16px;
+  location: north;
+  margin: 48px 0 0 8px;
+}
+
+inputbar {
+  expand: false;
+  children: [entry];
+  spacing: 0;
+  margin: 0 0 4px 0;
+}
+
+prompt {
+  border-radius: 16px 4px 16px 4px;
+  background-color: #d4d4d4;
+  text-color: #1c1c1c;
+  margin: 4px;
+  padding: 10px 14px;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+} 
+
+entry {
+  placeholder: "Launch";
+  placeholder-color: #FFFFFF5F;
+  cursor: text;
+  margin: 8px;
+  padding: 6px;
+  border-radius: 4px;
+  background-color: #ffffff0f;
+  vertical-align: 0.5;
+}
+
+listview {
+  padding: 0px;
+  columns: 1;
+  fixed-columns: true;
+  scrollbar: false;
+}
+
+element {
+  border-radius: 0px;
+  cursor: pointer;
+  /* border: 0 0 0 4px; */
+}
+
+element.selected {
+  background-color: #404040;
+  border-color: #d4d4d4;
+}
+
+element-icon {
+  size: 18px;
+  padding: 8px 12px;
+}
+
+element.selected element-icon {
+}
+
+element-text {
+   vertical-align: 0.50;
+}

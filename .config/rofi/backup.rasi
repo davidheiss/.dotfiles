@@ -1,0 +1,83 @@
+* {
+  text-color: #fffbfc;
+  background-color: #00000000;
+  width: inherit;
+  height: inherit;
+  cursor: inherit;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 600px;
+  height: 400px;
+  background-color: #1f2227;
+  border-radius: 8px;
+}
+
+inputbar {
+  expand: false;
+  children: [prompt,entry];
+  spacing: 0;
+  margin: 0 0 4px 0;
+}
+
+prompt {
+  border-radius: 8px 0 8px 0;
+  background-color: #ff5b84;
+  text-color: #fffbfc;
+  margin: 4px;
+  padding: 10px 14px;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+} 
+
+entry {
+  placeholder: "Search";
+  placeholder-color: #FFFFFF5F;
+  cursor: text;
+  margin: 8px;
+  padding: 6px;
+  border-radius: 4px;
+  background-color: #ffffff0f;
+  vertical-align: 0.5;
+}
+
+listview {
+  padding: 0px;
+  columns: 1;
+  fixed-columns: true;
+  scrollbar: false;
+}
+
+scrollbar {
+  background-color: #ffffff0f;
+  handle-width: 4px;
+  handle-color: #ff5b84;
+  border: 0;
+  border-radius: 4px;
+  margin: 0 8px 8px 0;
+}
+
+element {
+  border-radius: 0px;
+  border: 0 0 0 4px;
+}
+
+element.selected {
+  background-color: #404650;
+  border-color: #ff5b84;
+}
+
+element-icon {
+  size: 18px;
+  padding: 8px 12px;
+}
+
+element.selected element-icon {
+}
+
+element-text {
+   vertical-align: 0.50;
+}
